@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html>
+<head>
+    <title>
+	Blog
+    </title>
+    <script>
+       var audio,video;
+       var progressBar, textValue;
+       var pValue = 0;
+       function init() {
+           audio = document.getElementById('audio1');
+           video = document.getElementById('video1');
+           progressBar = document.getElementById('pr1');           
+           textValue = document.getElementById('sp1');
+           setInterval(updateProgress, 50);
+       }
+       function updateProgress() {
+           pValue += 1;
+           if (pValue > 100 ) pValue = 1;
+           progressBar.value = pValue;
+           textValue.textContent = pValue;
+       }
+
+       function playAudio() {
+           audio.play();
+       }
+       function pauseAudio() {
+           audio.pause();
+       }
+    
+       function rewindAudio() {
+           audio.currentTime = 0;
+       }
+       function playVideo() {
+           video.play();
+       }
+       function pauseVideo() {
+           video.pause();
+       }
+       function rewindVideo() {
+           video.currentTime = 0;
+       }
+       function leila(e) {
+           alert(e.dataset.leila);
+       }
+       function fire(e){
+          alert(e.dataset.type1 + " " + e.dataset.type2 + " " + e.dataset.type3Color); 
+       }
+
+       window.onload = init;
+    </script>
+    <style>
+       .green {color: green};
+       .khaki {color: khaki};
+       #x01 {font-style: italic}; 
+       p {font-style: italic};
+       h1 {padding-right:44pt};
+       .float-img{float: left; margin-right:10px; margin-bottom:10px; border: solid black 1px;padding: 2px"}
+       preogress#pr1 { width: 400px;}
+    </style>
+</head>
+<body>
+<!--<base href="http://www.youtube.com/" />-->
+<h1 style="color:khaki" align="center">
+  London
+</h1>
+<p class="green">
+  Hyde Park spring 2012
+</p>
+<p> 
+  <mark style="background-color:green;color:white">Time is:</mark> <span id="output">0</span>
+</p>
+
+<img class="float-img" src="images/CIMG2462.JPG" alt="Please Wait until the picture can be loaded" TITLE="London Hyde park 2012" width="600" height="400" usemap="#leilamap" />
+<map name="leilamap">
+<area shape="circle" coords="150 25 30" alt="me" href="http://aryaniss.blogspot.com"/></map>
+
+
+<a href="http://www.youtube.com/firefox"> Mozilla FireFox </a>
+
+<p> Here are some songs </p>
+<audio id="audio1" controls>
+   <source src="audio/02-LL-Loose_Laces.mp3" type="audio/mpeg"/>
+</audio>
+<form>
+  <input type="button" value="Play" onclick="playAudio()"/>
+  <input type="button" value="Pause" onclick="pauseAudio()"/>
+  <input type="button" value="Rewind" onclick="rewindAudio()"/>
+</form>
+<video id="video1" width="860" height="480" controls>
+   <source src="video/sample_iPod.m4v" type="video/mp4"/>
+</video>
+<form>
+  <input type="button" value="Play" onclick="playVideo()"/>
+  <input type="button" value="Pause" onclick="pauseVideo()"/>
+  <input type="button" value="Rewind" onclick="rewindVideo()"/>
+</form>
+
+<a href="#" data-leila="This is me" onclick=leila(this)> Click to see <a/>
+<button data-type1="rock" data-type2="copper" data-type3-color="pink" onclick="fire(this)"> Fire </button>
+
+<p>
+
+ Progress:
+ <progress id="pr1" value="0" max="100">
+    <span id="sp1">0</span>
+ </progress>  
+</p>
+
+</body>
+</html>
